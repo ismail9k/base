@@ -1,13 +1,14 @@
 {
   "name": "@baianat/base.framework",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "CSS framework based on Base design language",
   "author": "Abdelrahman Ismail <abdelrahman3d@gmail.com>",
   "main": "base.styl",
   "scripts": {
     "lint": "eslint ./src --fix",
     "build": "MODE=production node scripts/styles",
-    "dev": "MODE=dev node scripts/watcher"
+    "dev": "MODE=dev node scripts/watcher",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {},
   "devDependencies": {
