@@ -3,30 +3,17 @@ const path = require('path');
 const iconsFolder = 'src/icons'
 let icons = {};
 
-readDirFiles (iconsFolder);
+readDirFiles(iconsFolder);
 fs.writeFileSync('dist/icons.json', JSON.stringify(icons));
 
 function readDirFiles (dirPath) {
-  fs.readdir(dirPath, { withFileTypes: true }, (err, data) => {
-    if (err) {
-      console.log(err);
+  fs.readdirSync(dirPath, { withFileTypes: true }).forEach(file => {
+    const currentPath = path.join(dirPath, file.name)
+    if(file.isDirectory()) {
+      return readDirFiles(currentPath);
     }
-    data.forEach(file => {
-      const currentPath = path.join(dirPath, file.name)
-      if(file.isDirectory()) {
-        readDirFiles(currentPath);
-        return;
-      }
-
-      generateSVG(dirPath, file.name);
-    })
-  })
-}
-
-function cleanSVGName (dir, file) {
-  let newName = file.replace(/\s*copy\s*.svg$/, '.svg');
-  newName = newName.replace(/([-_ ?]+).svg$/, '.svg');
-  fs.renameSync(dir + '/'  + file, dir + '/' + newName);
+    generateSVG(dirPath, file.name);
+  });
 }
 
 function generateSVG (dir, file) {
