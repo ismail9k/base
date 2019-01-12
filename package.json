@@ -8,7 +8,8 @@
     "lint": "eslint ./src --fix",
     "build": "MODE=production node scripts/styles",
     "dev": "MODE=dev node scripts/watcher",
-    "deploy": "bash scripts/deploy.sh"
+    "deploy": "bash scripts/deploy.sh",
+    "icons": "node scripts/icons"
   },
   "dependencies": {},
   "devDependencies": {
